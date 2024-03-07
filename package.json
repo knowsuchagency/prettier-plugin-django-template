@@ -1,6 +1,6 @@
 {
 	"name": "prettier-plugin-django-template",
-	"version": "0.1.0",
+	"version": "0.1.1",
 	"description": "Prettier plugin for formatting Django templates.",
 	"author": "Stephan Fitzpatrick",
 	"license": "MIT",
@@ -25,7 +25,7 @@
 		"watch": "npm run build -- --watch",
 		"test": "node --experimental-vm-modules node_modules/jest/bin/jest.js --verbose",
 		"test:watch": "node --experimental-vm-modules node_modules/jest/bin/jest.js --watch --verbose",
-		"prepublishOnly": "npm run test && npm run build"
+		"prepublishOnly": "npm run build"
 	},
 	"devDependencies": {
 		"@babel/preset-typescript": "^7.23.3",

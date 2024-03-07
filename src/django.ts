@@ -12,6 +12,9 @@ export interface Node {
     index: number;
     length: number;
     nodes: { [id: string]: Node };
+    keyword?: string;
+    delimiter?: Delimiter;
+    isRaw?: boolean;
 }
 
 export interface Expression extends Node {

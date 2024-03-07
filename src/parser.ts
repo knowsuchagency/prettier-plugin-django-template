@@ -70,20 +70,21 @@ export const parse: Parser<Node>["parse"] = (text) => {
         };
 
         if (comment != undefined || ignoreBlock != undefined) {
-            root.content = replaceAt(
-                root.content,
-                placeholder,
-                match.index + i,
-                matchLength,
-            );
-            root.nodes[node.id] = {
-                ...node,
-                type: comment ? "comment" : "ignore",
-                content: comment || ignoreBlock,
-            };
-
-            i += match.index + placeholder.length;
-        }
+			root.content = replaceAt(
+				root.content,
+				placeholder,
+				match.index + i,
+				matchLength,
+			);
+			root.nodes[node.id] = {
+				...node,
+				type: comment ? "comment" : "ignore",
+				content: comment || ignoreBlock,
+				isRaw: true,
+			};
+		
+			i += match.index + placeholder.length;
+		}
 
         if (statement != undefined) {
             const keyword = match.groups.keyword;

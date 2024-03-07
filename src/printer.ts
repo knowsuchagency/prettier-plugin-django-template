@@ -88,17 +88,20 @@ const printStatement = (node: Statement): builders.Doc => {
 };
 
 const printCommentBlock = (node: Node): builders.Doc => {
-	const comment = builders.group(node.content, {
-		shouldBreak: node.preNewLines > 0,
-	});
+    if (node.isRaw) {
+        return node.content;
+    }
+    const comment = builders.group(node.content, {
+        shouldBreak: node.preNewLines > 0,
+    });
 
-	return node.preNewLines > 1
-		? builders.group([builders.trim, builders.hardline, comment])
-		: comment;
+    return node.preNewLines > 1
+        ? builders.group([builders.trim, builders.hardline, comment])
+        : comment;
 };
 
 const printIgnoreBlock = (node: Node): builders.Doc => {
-	return node.content;
+    return node.content;
 };
 
 export const embed: Printer<Node>["embed"] = () => {
