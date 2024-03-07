@@ -1,25 +1,23 @@
 {
-	"name": "prettier-plugin-jinja-template",
-	"version": "1.3.3",
-	"description": "Prettier plugin for formatting jinja templates.",
-	"author": "David Odenwald",
+	"name": "prettier-plugin-django-template",
+	"version": "0.1.0",
+	"description": "Prettier plugin for formatting Django templates.",
+	"author": "Stephan Fitzpatrick",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/davidodenwald/prettier-plugin-jinja-template.git"
+		"url": "git+https://github.com/knowsuchagency/prettier-plugin-django-template.git"
 	},
 	"bugs": {
-		"url": "https://github.com/davidodenwald/prettier-plugin-jinja-template/issues"
+		"url": "https://github.com/knowsuchagency/prettier-plugin-django-template/issues"
 	},
-	"homepage": "https://github.com/davidodenwald/prettier-plugin-jinja-template#readme",
+	"homepage": "https://github.com/knowsuchagency/prettier-plugin-django-template#readme",
 	"keywords": [
 		"prettier",
 		"plugin",
 		"template",
 		"html",
-		"jinja",
-		"jinja2",
-		"flask"
+		"django"
 	],
 	"main": "lib/index.js",
 	"scripts": {

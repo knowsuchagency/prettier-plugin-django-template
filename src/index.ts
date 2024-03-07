@@ -1,51 +1,54 @@
-import { Node } from "./jinja";
+import { Node } from "./django";
+
 import { parse } from "./parser";
+
 import { print, embed, getVisitorKeys } from "./printer";
+
 import {
-	Parser,
-	Printer,
-	SupportLanguage,
-	SupportOptions,
-	ParserOptions,
+  Parser,
+  Printer,
+  SupportLanguage,
+  SupportOptions,
+  ParserOptions,
 } from "prettier";
 
-const PLUGIN_KEY = "jinja-template";
+const PLUGIN_KEY = "django-template";
 
 export const languages: SupportLanguage[] = [
-	{
-		name: "JinjaTemplate",
-		parsers: [PLUGIN_KEY],
-		extensions: [".jinja", ".jinja2", ".j2", ".html"],
-		vscodeLanguageIds: ["jinja"],
-	},
+  {
+    name: "DjangoTemplate",
+    parsers: [PLUGIN_KEY],
+    extensions: [".django.html", ".djhtml", ".html"],
+    vscodeLanguageIds: ["django-html"],
+  },
 ];
 
 export const parsers = {
-	[PLUGIN_KEY]: <Parser<Node>>{
-		astFormat: PLUGIN_KEY,
-		parse,
-		locStart: (node) => node.index,
-		locEnd: (node) => node.index + node.length,
-	},
+  [PLUGIN_KEY]: <Parser<Node>>{
+    astFormat: PLUGIN_KEY,
+    parse,
+    locStart: (node) => node.index,
+    locEnd: (node) => node.index + node.length,
+  },
 };
 
 export const printers = {
-	[PLUGIN_KEY]: <Printer<Node>>{
-		print,
-		embed,
-		getVisitorKeys,
-	},
+  [PLUGIN_KEY]: <Printer<Node>>{
+    print,
+    embed,
+    getVisitorKeys,
+  },
 };
 
 export type extendedOptions = ParserOptions<Node> & {
-	quoteAttributes: boolean;
+  quoteAttributes: boolean;
 };
 
 export const options: SupportOptions = {
-	quoteAttributes: {
-		type: "boolean",
-		category: PLUGIN_KEY,
-		default: true,
-		description: "Surrounds the value of html attributes with quotes.",
-	},
+  quoteAttributes: {
+    type: "boolean",
+    category: PLUGIN_KEY,
+    default: true,
+    description: "Surrounds the value of html attributes with quotes.",
+  },
 };

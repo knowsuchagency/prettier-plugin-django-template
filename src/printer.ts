@@ -1,6 +1,6 @@
 import { AstPath, Printer, Doc, Options } from "prettier";
 import { builders, utils } from "prettier/doc";
-import { Placeholder, Node, Expression, Statement, Block } from "./jinja";
+import { Placeholder, Node, Expression, Statement, Block } from "./django";
 import { extendedOptions } from "./index";
 
 const NOT_FOUND = -1;
@@ -44,13 +44,13 @@ const printExpression = (node: Expression): builders.Doc => {
 
 	const expression = builders.group(
 		builders.join(" ", [
-			["{{", node.delimiter],
+			["{%", node.delimiter],
 			multiline
 				? builders.indent(getMultilineGroup(node.content))
 				: node.content,
 			multiline
-				? [builders.hardline, node.delimiter, "}}"]
-				: [node.delimiter, "}}"],
+				? [builders.hardline, node.delimiter, "%}"]
+				: [node.delimiter, "%}"],
 		]),
 		{
 			shouldBreak: node.preNewLines > 0,
@@ -65,7 +65,7 @@ const printExpression = (node: Expression): builders.Doc => {
 const printStatement = (node: Statement): builders.Doc => {
 	const multiline = node.content.includes("\n");
 
-	const statemnt = builders.group(
+	const statement = builders.group(
 		builders.join(" ", [
 			["{%", node.delimiter],
 			multiline
@@ -82,9 +82,9 @@ const printStatement = (node: Statement): builders.Doc => {
 		["else", "elif"].includes(node.keyword) &&
 		surroundingBlock(node)?.containsNewLines
 	) {
-		return [builders.dedent(builders.hardline), statemnt, builders.hardline];
+		return [builders.dedent(builders.hardline), statement, builders.hardline];
 	}
-	return statemnt;
+	return statement;
 };
 
 const printCommentBlock = (node: Node): builders.Doc => {
@@ -218,8 +218,8 @@ const splitAtElse = (node: Node): string[] => {
 };
 
 /**
- * Returns the indexs of the first and the last character of any placeholder
- * occuring in a string.
+ * Returns the indexes of the first and the last character of any placeholder
+ * occurring in a string.
  */
 export const findPlaceholders = (text: string): [number, number][] => {
 	const res = [];

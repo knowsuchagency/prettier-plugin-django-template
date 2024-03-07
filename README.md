@@ -1,17 +1,17 @@
-# prettier-plugin-jinja-template
+# prettier-plugin-django-template
 
-Formatter plugin for jinja2 template files.
+Formatter plugin for Django template files.
 
 ## Install
 
 ```bash
-npm install --save-dev prettier prettier-plugin-jinja-template
+npm install --save-dev prettier prettier-plugin-django-template
 ```
 
 Add the plugin to your `.prettierrc`:
 ```json
 {
-  "plugins": ["prettier-plugin-jinja-template"]
+  "plugins": ["prettier-plugin-django-template"]
 }
 ```
 
@@ -24,7 +24,7 @@ To format basic .html files, you'll have to override the used parser inside your
     {
       "files": ["*.html"],
       "options": {
-        "parser": "jinja-template"
+        "parser": "django-template"
       }
     }
   ]
@@ -38,12 +38,12 @@ npx prettier --write **/*.html
 
 If you don't have a prettier config you can run the plugin with this command:
 ```bash
-npx prettier --write **/*.html --plugin=prettier-plugin-jinja-template
+npx prettier --write **/*.html --plugin=prettier-plugin-django-template
 ```
 
 ### Ignoring Code
 
-Using range ignores is the best way to tell prettier to igone part of files. Most of the time this is necessary for Jinja tags inside `script` or `style` tags:
+Using range ignores is the best way to tell prettier to ignore part of files. Most of the time this is necessary for Django tags inside `script` or `style` tags:
 
 ```html
 <!-- prettier-ignore-start -->
