@@ -1,6 +1,6 @@
 # prettier-plugin-django-template
 
-## WARNING: This doens't work yet
+## WARNING: This doesn't work yet
 
 Formatter plugin for Django template files.
 
